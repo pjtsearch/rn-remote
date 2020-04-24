@@ -1,26 +1,44 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Remote } from 'remote-lib';
+import { Remote, HLayout } from 'remote-lib';
+import HLayoutComp from "./HLayout"
 
 export default function CompRemote({remote}:{remote:Remote}) {
     const layout = remote.layout
 
     return (
-    <View style={styles.container}>
-        <Grid>
-            <Row>
-                <Col><Text>1</Text></Col>
-                <Col><Text>2</Text></Col>
-                <Col><Text>3</Text></Col>
-            </Row>
-        </Grid>
+    <View style={styles.rows}>
+        {layout.map((row,i)=>
+            <View key={i} style={styles.columns}>
+                {row.map((col,i)=>
+                    <View key={i} style={{flexGrow:1}}>
+                        {col instanceof HLayout &&
+                            <HLayoutComp layout={col}></HLayoutComp>
+                        }
+                    </View>
+                )}
+            </View>
+        )}
     </View>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
-  },
+    rows: {
+        display:"flex",
+        flexGrow:1,
+        flexDirection:"column",
+        justifyContent:"space-between",
+        alignContent:"stretch",
+        alignItems:"stretch"
+    },
+    columns:{
+        display:"flex",
+        flexGrow:1,
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignContent:"stretch",
+        alignItems:"stretch"
+    }
 });
