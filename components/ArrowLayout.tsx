@@ -1,28 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { HLayout } from 'remote-lib';
+import { VLayout } from 'remote-lib';
 import { Button } from 'react-native-paper';
 
 
-export default function HLayoutComp({layout}:{layout:HLayout}) {
+export default function VLayoutComp({layout}:{layout:VLayout}) {
     const actions = layout.actions
 
     return (
-    <View style={styles.HLayout}>
-        {actions.map((action,i)=>
-            <View style={styles.flexItem} key={i}><Button mode="outlined" onPress={()=>action.run()}>{action.name}</Button></View>
-        )}
+    <View style={styles.VLayout}>
+        
     </View>
     );
 }
 
 const styles = StyleSheet.create({
-    HLayout: {
+    VLayout: {
         display:"flex",
-        flexDirection:"row",
+        flexDirection:"column",
         justifyContent:"space-between",
         alignContent:"stretch",
-        alignItems:"stretch",
+        alignItems:"stretch"
     },
     flexItem:{
         flex:1,
