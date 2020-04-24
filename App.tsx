@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Remote from "./components/Remote"
+import {fios} from "./remotes"
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Remote/>
+      <Remote remote={fios}/>
     </View>
   );
 }
