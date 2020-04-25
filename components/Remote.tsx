@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         justifyContent:"space-between",
         alignContent:"stretch",
-        alignItems:"stretch"
+        alignItems:"stretch",
+        marginBottom:20
     },
     surface:{
         borderRadius:25,

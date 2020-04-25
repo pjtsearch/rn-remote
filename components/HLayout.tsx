@@ -13,7 +13,7 @@ export default function HLayoutComp({layout}:{layout:HLayout}) {
     <View style={styles.HLayout}>
         {actions.map((action,i)=>
             <View style={styles.flexItem} key={i}>
-                <IconButton icon="power" onPress={()=>action.run()}></IconButton>
+                <IconButton icon={action.icon} onPress={()=>action.run()}></IconButton>
             </View>
         )}
     </View>
