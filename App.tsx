@@ -11,8 +11,8 @@ const theme = {
   dark:true,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#3498db',
-    accent: '#f1c40f',
+    primary: '#8c9eff',
+    accent: '#8c9eff',
   },
 };
 
@@ -21,6 +21,7 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
+        <Text style={{fontSize:25,fontWeight:"bold",margin:18,marginTop:3,textAlign:"center",color:"white"}}>Nook</Text>
         <Remote remote={fios}/>
       </View>
     </PaperProvider>
@@ -30,7 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
-    backgroundColor:"black",
+    backgroundColor:"#424242",
     flex:1
   },
 });

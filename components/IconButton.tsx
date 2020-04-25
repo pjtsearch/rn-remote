@@ -7,7 +7,7 @@ import RemoteButton from '../styles/RemoteButton';
 
 export default function IconButton({icon,onPress, style}:{icon:string,onPress:Function,style?:any}) {
     return (
-        <Button style={{...RemoteButton.button,...style}} contentStyle={{minHeight:40,marginLeft:-15}} labelStyle={{display:"none"}} icon={icon} mode="outlined" onPress={()=>onPress()}>{null}</Button>
+        <Button style={{...RemoteButton.button,...style}} contentStyle={{minHeight:60,marginLeft:-32,transform:[{scale:2}]}} labelStyle={{display:"none"}} icon={icon} mode="outlined" onPress={()=>onPress()}>{null}</Button>
     );
 }
 

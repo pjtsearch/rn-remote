@@ -5,31 +5,34 @@ import { Remote, HLayout, VLayout, ArrowLayout } from 'remote-lib';
 import HLayoutComp from "./HLayout"
 import VLayoutComp from './VLayout';
 import ArrowLayoutComp from './ArrowLayout';
+import { Surface } from 'react-native-paper';
 
 
 export default function CompRemote({remote}:{remote:Remote}) {
     const layout = remote.layout
 
     return (
-    <View style={styles.rows}>
-        {layout.map((row,i)=>
-            <View key={i} style={styles.columns}>
-                {row.map((col,i)=>
-                    <View key={i}>
-                        {col instanceof HLayout &&
-                            <HLayoutComp layout={col}></HLayoutComp>
-                        }
-                        {col instanceof VLayout &&
-                            <VLayoutComp layout={col}></VLayoutComp>
-                        }
-                        {col instanceof ArrowLayout &&
-                            <ArrowLayoutComp layout={col}></ArrowLayoutComp>
-                        }
-                    </View>
-                )}
-            </View>
-        )}
-    </View>
+    <Surface style={styles.surface}>
+        <View style={styles.rows}>
+            {layout.map((row,i)=>
+                <View key={i} style={styles.columns}>
+                    {row.map((col,i)=>
+                        <View key={i}>
+                            {col instanceof HLayout &&
+                                <HLayoutComp layout={col}></HLayoutComp>
+                            }
+                            {col instanceof VLayout &&
+                                <VLayoutComp layout={col}></VLayoutComp>
+                            }
+                            {col instanceof ArrowLayout &&
+                                <ArrowLayoutComp layout={col}></ArrowLayoutComp>
+                            }
+                        </View>
+                    )}
+                </View>
+            )}
+        </View>
+    </Surface>
     );
 }
 
@@ -48,5 +51,13 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         alignContent:"stretch",
         alignItems:"stretch"
+    },
+    surface:{
+        borderRadius:25,
+        padding:20,
+        height:"100%",
+        borderBottomLeftRadius:0,
+        borderBottomRightRadius:0,
+        backgroundColor:"#000000"
     }
 });
