@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { VLayout } from 'remote-lib';
+import { ArrowLayout } from 'remote-lib';
 import { Button } from 'react-native-paper';
+import RemoteButton from '../styles/RemoteButton';
 
 
-export default function VLayoutComp({layout}:{layout:VLayout}) {
-    const actions = layout.actions
+export default function VLayoutComp({layout}:{layout:ArrowLayout}) {
 
     return (
     <View style={styles.VLayout}>
-        
+        <Button mode="outlined" style={RemoteButton.button} onPress={()=>layout.left.run()}>{layout.left.name}</Button>
     </View>
     );
 }
