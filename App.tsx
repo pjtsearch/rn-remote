@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Remote from "./components/Remote"
 import {fios} from "./remotes"
@@ -6,6 +6,7 @@ import { Provider as PaperProvider, DefaultTheme, IconButton, Surface } from 're
 import { vscale, scale } from './utils/scale';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
+import * as Animatable from 'react-native-animatable';
 
 const theme = {
   ...DefaultTheme,
@@ -24,6 +25,21 @@ export default function App() {
     'Google Sans Medium': require('./assets/fonts/GoogleSansMedium.ttf'),
     'Google Sans': require('./assets/fonts/GoogleSans.ttf'),
   });
+  var view:any;
+  const menuItems = [
+    "test"
+  ]
+  const handleViewRef = (ref:any) => view = ref;
+  let [menuOpen,$menuOpen] = useState(false)
+  const toggleMenu = () => {
+    if (!menuOpen){
+      view.animate({ 0: { height: "0%" }, 1: { height: "91.25%" } });
+      $menuOpen(true)
+    }else {
+      view.animate({ 0: { height: "91.25%" }, 1: { height: "0%"  } });
+      $menuOpen(false)
+    }
+  }
   if (!fontsLoaded) {
     return <AppLoading/>
   } else {
@@ -32,9 +48,14 @@ export default function App() {
         <View style={styles.container}>
           <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
             <IconButton icon="arrow-left" color="white"></IconButton>
-            <Text style={styles.title}>{remote.name}</Text>
+            <Text style={styles.title} onPress={()=>toggleMenu()}>{remote.name}</Text>
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
+          <Animatable.View style={{height:0,overflow:"hidden"}} ref={handleViewRef} duration={500}>
+            {menuItems.map((v,i)=>
+              <Text key={i}>test</Text>
+            )}
+          </Animatable.View>
           <Surface style={styles.surface}>
             <Remote remote={remote}/>
           </Surface>
