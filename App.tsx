@@ -12,18 +12,23 @@ const theme = {
   dark:true,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#8c9eff',
-    accent: '#8c9eff',
+    primary: '#448aff',
+    accent: '#448aff',
   },
 };
 
 
 export default function App() {
+  const remote = fios
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Text style={styles.title}>Nook</Text>
-        <Remote remote={fios}/>
+        <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
+          <IconButton icon="arrow-left" color="white"></IconButton>
+          <Text style={styles.title}>{remote.name}</Text>
+          <IconButton icon="dots-vertical" color="white"></IconButton>
+        </View>
+        <Remote remote={remote}/>
       </View>
     </PaperProvider>
   );
@@ -32,7 +37,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
-    backgroundColor:"#424242",
+    backgroundColor:theme.colors.primary,
     flex:1
   },
   title:{

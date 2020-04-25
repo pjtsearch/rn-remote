@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         marginBottom:20
     },
     surface:{
-        borderRadius:25,
+        borderRadius:22,
         padding:Dimensions.get('window').height < 800 ? 10 : 25,
         height:"100%",
         elevation:30,

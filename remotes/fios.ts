@@ -1,7 +1,7 @@
 import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout } from "remote-lib";
 import { TV, STB } from "../devices";
 
-export const fios = new Remote({name:"Fios",layout:[
+export const fios = new Remote({name:"Nook FiOS",layout:[
     [
         null,
         null,
