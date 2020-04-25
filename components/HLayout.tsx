@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
         alignItems:"stretch",
     },
     flexItem:{
-        margin:4
+        margin:2
     }
 });

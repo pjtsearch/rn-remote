@@ -1,4 +1,4 @@
-import { Remote, HLayout, Macro, VLayout, ArrowLayout } from "remote-lib";
+import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout } from "remote-lib";
 import { TV, STB } from "../devices";
 
 export const fios = new Remote({name:"Fios",layout:[
@@ -10,7 +10,7 @@ export const fios = new Remote({name:"Fios",layout:[
                 TV.getAction("off"),
                 STB.getAction("off")
             ]}),
-            new Macro({name:"on",icon:"power",actions:[
+            new Macro({name:"on",icon:"power-on",actions:[
                 TV.getAction("on"),
                 STB.getAction("on")
             ]})
@@ -73,24 +73,40 @@ export const fios = new Remote({name:"Fios",layout:[
                 TV.getAction("on"),
                 STB.getAction("on")
             ]}),
-            new Macro({name:"on",icon:"delete-outline",actions:[
+            new Macro({name:"on",icon:"trash-can-outline",actions:[
                 TV.getAction("on"),
                 STB.getAction("on")
             ]}),
         ]),
-        new HLayout([
-            new Macro({name:"on",icon:"rewind-outline",actions:[
-                TV.getAction("on"),
-                STB.getAction("on")
-            ]}),
-            new Macro({name:"on",icon:"stop-circle-outline",actions:[
-                TV.getAction("on"),
-                STB.getAction("on")
-            ]}),
-            new Macro({name:"on",icon:"fast-forward-outline",actions:[
-                TV.getAction("on"),
-                STB.getAction("on")
-            ]}),
+        new GridLayout([
+            [
+                new Macro({name:"on",icon:"menu-left-outline",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"stop-circle-outline",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"menu-right-outline",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+            ],
+            [
+                new Macro({name:"on",icon:"rewind-outline",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"record",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"fast-forward-outline",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+            ],
         ]),
         new VLayout([
             new Macro({name:"on",icon:"pause",actions:[
@@ -102,5 +118,93 @@ export const fios = new Remote({name:"Fios",layout:[
                 STB.getAction("on")
             ]}),
         ])
+    ],
+    [
+        new VLayout([
+            new Macro({name:"on",icon:"dots-horizontal",actions:[
+                TV.getAction("on"),
+                STB.getAction("on")
+            ]}),
+            new Macro({name:"on",icon:"settings-outline",actions:[
+                TV.getAction("on"),
+                STB.getAction("on")
+            ]}),
+            new Macro({name:"on",icon:"exit-to-app",actions:[
+                TV.getAction("on"),
+                STB.getAction("on")
+            ]}),
+        ]),
+        new GridLayout([
+            [
+                new Macro({name:"on",icon:"numeric-1",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-2",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-3",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+            ],
+            [
+                new Macro({name:"on",icon:"numeric-4",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-5",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-6",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+            ],
+            [
+                new Macro({name:"on",icon:"numeric-7",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-8",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-9",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+            ],
+            [
+                new Macro({name:"on",icon:"asterisk",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"numeric-0",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+                new Macro({name:"on",icon:"pound",actions:[
+                    TV.getAction("on"),
+                    STB.getAction("on")
+                ]}),
+            ],
+        ]),
+        new VLayout([
+            new Macro({name:"on",icon:"information-outline",actions:[
+                TV.getAction("on"),
+                STB.getAction("on")
+            ]}),
+            new Macro({name:"on",icon:"television-guide",actions:[
+                TV.getAction("on"),
+                STB.getAction("on")
+            ]}),
+            new Macro({name:"on",icon:"playlist-play",actions:[
+                TV.getAction("on"),
+                STB.getAction("on")
+            ]}),
+        ]),
     ]
 ]})
