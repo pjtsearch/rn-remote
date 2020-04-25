@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Remote from "./components/Remote"
 import {fios} from "./remotes"
-import { Provider as PaperProvider, DefaultTheme, IconButton } from 'react-native-paper';
-import { vscale } from './utils/scale';
+import { Provider as PaperProvider, DefaultTheme, IconButton, Surface } from 'react-native-paper';
+import { vscale, scale } from './utils/scale';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 
@@ -35,7 +35,9 @@ export default function App() {
             <Text style={styles.title}>{remote.name}</Text>
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
-          <Remote remote={remote}/>
+          <Surface style={styles.surface}>
+            <Remote remote={remote}/>
+          </Surface>
         </View>
       </PaperProvider>
     );
@@ -55,5 +57,14 @@ const styles = StyleSheet.create({
     textAlign:"center",
     color:"white",
     fontFamily:"Google Sans Medium"
-  }
+  },
+  surface:{
+    borderRadius:18,
+    padding:25 * scale,
+    height:"100%",
+    elevation:30,
+    borderBottomLeftRadius:0,
+    borderBottomRightRadius:0,
+    backgroundColor:"#000000"
+}
 });

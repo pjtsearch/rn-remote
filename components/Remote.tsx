@@ -14,30 +14,28 @@ export default function CompRemote({remote}:{remote:Remote}) {
     const layout = remote.layout
 
     return (
-    <Surface style={styles.surface}>
-        <View style={styles.rows}>
-            {layout.map((row,i)=>
-                <View key={i} style={styles.columns}>
-                    {row.map((col,i)=>
-                        <View key={i}>
-                            {col instanceof HLayout &&
-                                <HLayoutComp layout={col}></HLayoutComp>
-                            }
-                            {col instanceof VLayout &&
-                                <VLayoutComp layout={col}></VLayoutComp>
-                            }
-                            {col instanceof ArrowLayout &&
-                                <ArrowLayoutComp layout={col}></ArrowLayoutComp>
-                            }
-                            {col instanceof GridLayout &&
-                                <GridLayoutComp layout={col}></GridLayoutComp>
-                            }
-                        </View>
-                    )}
-                </View>
-            )}
-        </View>
-    </Surface>
+    <View style={styles.rows}>
+        {layout.map((row,i)=>
+            <View key={i} style={styles.columns}>
+                {row.map((col,i)=>
+                    <View key={i}>
+                        {col instanceof HLayout &&
+                            <HLayoutComp layout={col}></HLayoutComp>
+                        }
+                        {col instanceof VLayout &&
+                            <VLayoutComp layout={col}></VLayoutComp>
+                        }
+                        {col instanceof ArrowLayout &&
+                            <ArrowLayoutComp layout={col}></ArrowLayoutComp>
+                        }
+                        {col instanceof GridLayout &&
+                            <GridLayoutComp layout={col}></GridLayoutComp>
+                        }
+                    </View>
+                )}
+            </View>
+        )}
+    </View>
     );
 }
 
@@ -57,14 +55,5 @@ const styles = StyleSheet.create({
         alignContent:"stretch",
         alignItems:"stretch",
         marginBottom:20 * vscale
-    },
-    surface:{
-        borderRadius:18,
-        padding:25 * scale,
-        height:"100%",
-        elevation:30,
-        borderBottomLeftRadius:0,
-        borderBottomRightRadius:0,
-        backgroundColor:"#000000"
     }
 });
