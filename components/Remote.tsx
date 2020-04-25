@@ -1,9 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Remote, HLayout, VLayout } from 'remote-lib';
+import { Remote, HLayout, VLayout, ArrowLayout } from 'remote-lib';
 import HLayoutComp from "./HLayout"
 import VLayoutComp from './VLayout';
+import ArrowLayoutComp from './ArrowLayout';
+
 
 export default function CompRemote({remote}:{remote:Remote}) {
     const layout = remote.layout
@@ -19,6 +21,9 @@ export default function CompRemote({remote}:{remote:Remote}) {
                         }
                         {col instanceof VLayout &&
                             <VLayoutComp layout={col}></VLayoutComp>
+                        }
+                        {col instanceof ArrowLayout &&
+                            <ArrowLayoutComp layout={col}></ArrowLayoutComp>
                         }
                     </View>
                 )}

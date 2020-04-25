@@ -2,28 +2,36 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ArrowLayout } from 'remote-lib';
 import { Button } from 'react-native-paper';
-import RemoteButton from '../styles/RemoteButton';
+import IconButton from './IconButton';
 
 
 export default function VLayoutComp({layout}:{layout:ArrowLayout}) {
 
     return (
-    <View style={styles.VLayout}>
-        <Button mode="outlined" style={RemoteButton.button} onPress={()=>layout.left.run()}>{layout.left.name}</Button>
+    <View style={styles.ArrowLayout}>
+            <View style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+                <IconButton style={{maxWidth:70}} icon="power" onPress={()=>layout.top.run()}></IconButton>
+            </View>
+            <View style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
+                <IconButton style={{maxWidth:70}} icon="power" onPress={()=>layout.left.run()}></IconButton>
+                <IconButton style={{maxWidth:70}} icon="power" onPress={()=>layout.left.run()}></IconButton>
+                <IconButton style={{maxWidth:70}} icon="power" onPress={()=>layout.right.run()}></IconButton>
+            </View>
+            <View style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+                <IconButton style={{maxWidth:70}} icon="power" onPress={()=>layout.bottom.run()}></IconButton>
+            </View>
     </View>
     );
 }
 
 const styles = StyleSheet.create({
-    VLayout: {
+    ArrowLayout: {
         display:"flex",
         flexDirection:"column",
-        justifyContent:"space-between",
-        alignContent:"stretch",
-        alignItems:"stretch"
+        flexWrap:"wrap",
+        maxWidth:"auto"
     },
     flexItem:{
-        flex:1,
         margin:5
     }
 });

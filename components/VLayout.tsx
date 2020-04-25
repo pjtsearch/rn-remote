@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     VLayout: {
         display:"flex",
         flexDirection:"column",
-        justifyContent:"space-between",
+        justifyContent:"center",
         alignContent:"stretch",
         alignItems:"stretch"
     },
