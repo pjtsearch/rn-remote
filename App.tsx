@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Remote from "./components/Remote"
 import {fios} from "./remotes"
 import { Provider as PaperProvider, DefaultTheme, IconButton } from 'react-native-paper';
+import { vscale } from './utils/scale';
 
 
 const theme = {
@@ -21,7 +22,7 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Text style={{fontSize:25,fontWeight:"bold",margin:20,marginTop:5,textAlign:"center",color:"white"}}>Nook</Text>
+        <Text style={styles.title}>Nook</Text>
         <Remote remote={fios}/>
       </View>
     </PaperProvider>
@@ -34,4 +35,12 @@ const styles = StyleSheet.create({
     backgroundColor:"#424242",
     flex:1
   },
+  title:{
+    fontSize:25,
+    fontWeight:"bold",
+    margin:20 * vscale,
+    marginTop:5* vscale,
+    textAlign:"center",
+    color:"white"
+  }
 });
