@@ -13,7 +13,7 @@ export default function CompRemote({remote}:{remote:Remote}) {
         {layout.map((row,i)=>
             <View key={i} style={styles.columns}>
                 {row.map((col,i)=>
-                    <View key={i} style={{flex:1}}>
+                    <View key={i}>
                         {col instanceof HLayout &&
                             <HLayoutComp layout={col}></HLayoutComp>
                         }
