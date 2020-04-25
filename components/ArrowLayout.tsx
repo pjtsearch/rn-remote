@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { ArrowLayout } from 'remote-lib';
 import { Button } from 'react-native-paper';
 import IconButton from './IconButton';
+import { scale } from '../utils/scale';
 
 
 export default function VLayoutComp({layout}:{layout:ArrowLayout}) {
@@ -32,6 +33,6 @@ const styles = StyleSheet.create({
         maxWidth:"auto"
     },
     flexItem:{
-        margin:5
+        margin:5 * scale
     }
 });

@@ -21,7 +21,7 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <View style={styles.container}>
-        <Text style={{fontSize:25,fontWeight:"bold",margin:18,marginTop:3,textAlign:"center",color:"white"}}>Nook</Text>
+        <Text style={{fontSize:25,fontWeight:"bold",margin:20,marginTop:5,textAlign:"center",color:"white"}}>Nook</Text>
         <Remote remote={fios}/>
       </View>
     </PaperProvider>

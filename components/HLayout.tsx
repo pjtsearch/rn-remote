@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { HLayout } from 'remote-lib';
 import { Button } from 'react-native-paper';
 import RemoteButton from '../styles/RemoteButton';
 import IconButton from "./IconButton"
+import { scale } from '../utils/scale';
 
 
 export default function HLayoutComp({layout}:{layout:HLayout}) {
@@ -29,6 +30,6 @@ const styles = StyleSheet.create({
         alignItems:"stretch",
     },
     flexItem:{
-        margin:2
+        margin:2 * scale
     }
 });

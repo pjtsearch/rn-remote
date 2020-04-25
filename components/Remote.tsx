@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Remote, HLayout, VLayout, ArrowLayout, GridLayout } from 'remote-lib';
 import HLayoutComp from "./HLayout"
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     surface:{
         borderRadius:25,
-        padding:25,
+        padding:Dimensions.get('window').height < 800 ? 10 : 25,
         height:"100%",
         elevation:30,
         borderBottomLeftRadius:0,
