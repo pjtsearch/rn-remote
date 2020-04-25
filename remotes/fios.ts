@@ -3,7 +3,12 @@ import { TV, STB } from "../devices";
 
 export const fios = new Remote({name:"Nook FiOS",layout:[
     [
-        null,
+        new HLayout([
+            new Macro({name:"off",icon:"home-variant-outline",actions:[
+                TV.getAction("off"),
+                STB.getAction("off")
+            ]}), 
+        ]),
         null,
         new HLayout([
             new Macro({name:"off",icon:"power-off",actions:[
@@ -84,7 +89,7 @@ export const fios = new Remote({name:"Nook FiOS",layout:[
                     TV.getAction("on"),
                     STB.getAction("on")
                 ]}),
-                new Macro({name:"on",icon:"stop-circle-outline",actions:[
+                new Macro({name:"on",icon:"stop",actions:[
                     TV.getAction("on"),
                     STB.getAction("on")
                 ]}),
@@ -98,7 +103,7 @@ export const fios = new Remote({name:"Nook FiOS",layout:[
                     TV.getAction("on"),
                     STB.getAction("on")
                 ]}),
-                new Macro({name:"on",icon:"record",actions:[
+                new Macro({name:"on",icon:"radiobox-marked",actions:[
                     TV.getAction("on"),
                     STB.getAction("on")
                 ]}),
@@ -121,7 +126,7 @@ export const fios = new Remote({name:"Nook FiOS",layout:[
     ],
     [
         new VLayout([
-            new Macro({name:"on",icon:"dots-horizontal",actions:[
+            new Macro({name:"on",icon:"menu",actions:[
                 TV.getAction("on"),
                 STB.getAction("on")
             ]}),
@@ -201,7 +206,7 @@ export const fios = new Remote({name:"Nook FiOS",layout:[
                 TV.getAction("on"),
                 STB.getAction("on")
             ]}),
-            new Macro({name:"on",icon:"playlist-play",actions:[
+            new Macro({name:"on",icon:"folder-star-outline",actions:[
                 TV.getAction("on"),
                 STB.getAction("on")
             ]}),

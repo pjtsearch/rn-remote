@@ -7,6 +7,7 @@ import VLayoutComp from './VLayout';
 import ArrowLayoutComp from './ArrowLayout';
 import GridLayoutComp from './GridLayout';
 import { Surface } from 'react-native-paper';
+import { scale, vscale } from '../utils/scale';
 
 
 export default function CompRemote({remote}:{remote:Remote}) {
@@ -55,11 +56,11 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         alignContent:"stretch",
         alignItems:"stretch",
-        marginBottom:20
+        marginBottom:20 * vscale
     },
     surface:{
-        borderRadius:22,
-        padding:Dimensions.get('window').height < 800 ? 10 : 25,
+        borderRadius:18,
+        padding:25 * scale,
         height:"100%",
         elevation:30,
         borderBottomLeftRadius:0,

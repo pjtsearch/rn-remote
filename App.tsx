@@ -4,7 +4,8 @@ import Remote from "./components/Remote"
 import {fios} from "./remotes"
 import { Provider as PaperProvider, DefaultTheme, IconButton } from 'react-native-paper';
 import { vscale } from './utils/scale';
-
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from 'expo';
 
 const theme = {
   ...DefaultTheme,
@@ -17,21 +18,28 @@ const theme = {
   },
 };
 
-
 export default function App() {
   const remote = fios
-  return (
-    <PaperProvider theme={theme}>
-      <View style={styles.container}>
-        <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
-          <IconButton icon="arrow-left" color="white"></IconButton>
-          <Text style={styles.title}>{remote.name}</Text>
-          <IconButton icon="dots-vertical" color="white"></IconButton>
+  let [fontsLoaded] = useFonts({
+    'Google Sans Medium': require('./assets/fonts/GoogleSansMedium.ttf'),
+    'Google Sans': require('./assets/fonts/GoogleSans.ttf'),
+  });
+  if (!fontsLoaded) {
+    return <AppLoading/>
+  } else {
+    return (
+      <PaperProvider theme={theme}>
+        <View style={styles.container}>
+          <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
+            <IconButton icon="arrow-left" color="white"></IconButton>
+            <Text style={styles.title}>{remote.name}</Text>
+            <IconButton icon="dots-vertical" color="white"></IconButton>
+          </View>
+          <Remote remote={remote}/>
         </View>
-        <Remote remote={remote}/>
-      </View>
-    </PaperProvider>
-  );
+      </PaperProvider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -41,11 +49,11 @@ const styles = StyleSheet.create({
     flex:1
   },
   title:{
-    fontSize:25,
-    fontWeight:"bold",
-    margin:20 * vscale,
-    marginTop:5* vscale,
+    fontSize:21,
+    fontWeight:"normal",
+    marginTop:12 * vscale,
     textAlign:"center",
-    color:"white"
+    color:"white",
+    fontFamily:"Google Sans Medium"
   }
 });
