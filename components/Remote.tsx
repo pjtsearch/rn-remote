@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     surface:{
         borderRadius:25,
-        padding:20,
+        padding:25,
         height:"100%",
         elevation:30,
         borderBottomLeftRadius:0,
