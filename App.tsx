@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Remote from "./components/Remote"
 import {NookFios,NookRoku} from "./remotes"
-import { Provider as PaperProvider, DefaultTheme, IconButton, Surface } from 'react-native-paper';
+import { Provider as PaperProvider, DefaultTheme, IconButton, Surface, Button } from 'react-native-paper';
 import { vscale, scale } from './utils/scale';
 import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 import * as Animatable from 'react-native-animatable';
+import { house } from './House';
 
 const theme = {
   ...DefaultTheme,
@@ -18,10 +19,9 @@ const theme = {
     accent: '#448aff',
   },
 };
-console.log("surfaceTitle")
 
 export default function App() {
-  const remote = NookFios
+  const [remote,$remote] = useState(NookFios)
   let [fontsLoaded] = useFonts({
     'Google Sans Medium': require('./assets/fonts/GoogleSansMedium.ttf'),
     'Google Sans': require('./assets/fonts/GoogleSans.ttf'),
@@ -29,9 +29,7 @@ export default function App() {
   var [menuView,$menuView]:any = useState({});
   var [surfaceTitle,$surfaceTitle]:any = useState({});
   var [surfaceView,$surfaceView]:any = useState({});
-  const menuItems = [
-    "test"
-  ]
+  const menuItems = house.rooms.flat().map(room=>room.remotes).flat()
   // const handleMenuViewRef = (ref:any) => menuView = ref;
   // const handleSurfaceViewRef = (ref:any) => surfaceView = ref;
   // const handleSurfaceTitleRef = (ref:any) => {surfaceTitle = ref;console.log(!surfaceTitle);}
@@ -64,8 +62,8 @@ export default function App() {
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
           <Animatable.View style={{height:0,overflow:"hidden"}} ref={$menuView} duration={500}>
-            {menuItems.map((v,i)=>
-              <Text key={i}>test</Text>
+            {menuItems.map((item,i)=>
+              <Button mode="outlined" color="white" style={{margin:10,borderWidth:2}} onPress={()=>{$remote(item);toggleMenu()}} key={i}>{item.name}</Button>
             )}
           </Animatable.View>
             <Surface style={styles.surface}>
