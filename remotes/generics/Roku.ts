@@ -1,7 +1,8 @@
-import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout, Device } from "remote-lib";
+import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout, Device, Custom } from "remote-lib";
+import { TV, Matrix, AudioReceiver } from "../../devices/generics";
 
 export class Roku extends Remote {
-    constructor({name,roku}:{name:string,roku:Device}){
+    constructor({name,roku,tv,matrix,matrixCommand,audioReceiver,audioReceiverAddress,audioReceiverOutput}:{name:string,roku:Device,tv:TV,matrix:Matrix,matrixCommand:string,audioReceiver:AudioReceiver,audioReceiverAddress:string,audioReceiverOutput:string}){
         super({name,layout:[
             [
                 new HLayout([
@@ -9,6 +10,26 @@ export class Roku extends Remote {
                         roku.getAction("Home")
                     ]})
                 ]),
+                null,
+                new HLayout([
+                    new Macro({name:"off",icon:"power-off",actions:[
+                        // fios.getAction("")
+                    ]}),
+                    new Custom({name:"on",icon:"power-on",async action(){
+                        // console.log(tv.getAction("on"))
+                        tv.getAction("on").run()
+                        matrix.getAction(matrixCommand).run()
+                        audioReceiver.getAction(`${audioReceiverAddress}On`).run()
+                        await (async () => new Promise(resolve => setTimeout(resolve, 2000)))(); 
+                        audioReceiver.getAction(`${audioReceiverAddress}Set${audioReceiverOutput}`).run()
+                        await (async () => new Promise(resolve => setTimeout(resolve, 2000)))(); 
+                        audioReceiver.getAction(`${audioReceiverAddress}VolumeSet`).run()
+                        // fios.getAction("on").run()
+                    }})
+                ])
+            ],
+            [
+                null,
                 new ArrowLayout({
                     left:new Macro({name:"left",icon:"chevron-left",actions:[
                     roku.getAction("Left")
@@ -26,11 +47,7 @@ export class Roku extends Remote {
                         roku.getAction("Down")
                     ]}),
                 }),
-                new HLayout([
-                    new Macro({name:"search",icon:"magnify",actions:[
-                        roku.getAction("Search")
-                    ]})
-                ]),
+                null
             ],
             [
                 new VLayout([
