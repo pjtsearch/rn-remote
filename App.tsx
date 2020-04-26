@@ -34,6 +34,8 @@ export default function App() {
     'Google Sans': require('./assets/fonts/GoogleSans.ttf'),
   });
   var [menuView,$menuView]:any = useState({});
+  var [menuTitle,$menuTitle]:any = useState({});
+  var [menuButton,$menuButton]:any = useState({});
   var [surfaceTitle,$surfaceTitle]:any = useState({});
   var [surfaceView,$surfaceView]:any = useState({});
   const menuItems = house.rooms.flat().map(room=>room.remotes).flat()
@@ -49,12 +51,20 @@ export default function App() {
       setTimeout(()=>{
         surfaceTitle.animate({0: { opacity:0,height:0}, 1: { opacity:1,height:30} })
       },100)
+      menuTitle.animate({0: { opacity:1 }, 1: { opacity:0 } })
+      menuButton.animate({0: { opacity:1 }, 1: { opacity:0 } })
       $menuOpen(true)
+      menuTitle.animate({0: { opacity:0 }, 1: { opacity:1 } })
+      menuButton.animate({0: { opacity:0 }, 1: { opacity:1 } })
     }else {
       surfaceTitle.animate({0: { opacity:1,height:30}, 0.5: { opacity:0, height:0}, 1:{opacity:0, height:0} })
       menuView.animate({ 0: { height: "81%" }, 1: { height: "0%"} });
       surfaceView.animate({0: { opacity:0 }, 1: { opacity:1 } })
+      menuTitle.animate({0: { opacity:0 }, 1: { opacity:1 } })
+      menuButton.animate({0: { opacity:1 }, 1: { opacity:0 } })
       $menuOpen(false)
+      menuTitle.animate({0: { opacity:0 }, 1: { opacity:1 } })
+      menuButton.animate({0: { opacity:0 }, 1: { opacity:1 } })
     }
   }
   if (!fontsLoaded) {
@@ -64,8 +74,10 @@ export default function App() {
       <PaperProvider theme={theme}>
         <View style={styles.container}>
           <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
-            <IconButton icon={menuOpen ? "arrow-left":"menu"} color="white" onPress={()=>toggleMenu()}></IconButton>
-            <Text style={styles.title}>{menuOpen ? "Menu" : remote.name}</Text>
+            <Animatable.View duration={200} ref={$menuButton}>
+              <IconButton icon={menuOpen ? "arrow-left":"menu"} color="white" onPress={()=>toggleMenu()}></IconButton>
+            </Animatable.View>
+            <Animatable.Text duration={200} style={styles.title} ref={$menuTitle}>{menuOpen ? "Menu" : remote.name}</Animatable.Text>
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
           <Animatable.View style={{height:0,overflow:"hidden"}} ref={$menuView} duration={500}>
