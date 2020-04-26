@@ -60,13 +60,13 @@ export default function App() {
       <PaperProvider theme={theme}>
         <View style={styles.container}>
           <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
-            <IconButton icon="menu" color="white" onPress={()=>toggleMenu()}></IconButton>
-            <Text style={styles.title}>{remote.name}</Text>
+            <IconButton icon={menuOpen ? "arrow-left":"menu"} color="white" onPress={()=>toggleMenu()}></IconButton>
+            <Text style={styles.title}>{menuOpen ? "Menu" : remote.name}</Text>
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
           <Animatable.View style={{height:0,overflow:"hidden"}} ref={$menuView} duration={500}>
             {menuItems.map((item,i)=>
-              <Button mode="outlined" color="white" style={{margin:10,borderWidth:2}} onPress={()=>{$remote(item);toggleMenu()}} key={i}>{item.name}</Button>
+              <Button mode={item == remote ? "contained":"outlined"} color={item == remote ? "#ffffff77": "white"} style={{margin:10,borderWidth:2}} onPress={()=>{$remote(item);toggleMenu()}} key={i}>{item.name}</Button>
             )}
           </Animatable.View>
           <TouchableWithoutFeedback onPress={()=>{if(menuOpen)toggleMenu()}}>
