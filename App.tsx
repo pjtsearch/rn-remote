@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import Remote from "./components/Remote"
 import {NookFios,NookRoku} from "./remotes"
 import { Provider as PaperProvider, DefaultTheme, IconButton, Surface, Button } from 'react-native-paper';
@@ -21,6 +21,9 @@ const theme = {
 };
 
 export default function App() {
+  useEffect(() =>{
+    setTimeout(()=>StatusBar.setBackgroundColor("#448aff"),800)
+  },[])
   const [remote,$remote] = useState(NookFios)
   let [fontsLoaded] = useFonts({
     'Google Sans Medium': require('./assets/fonts/GoogleSansMedium.ttf'),
@@ -57,8 +60,8 @@ export default function App() {
       <PaperProvider theme={theme}>
         <View style={styles.container}>
           <View style={{display:"flex", alignItems:"stretch", justifyContent:"space-between",flexDirection:"row"}}>
-            <IconButton icon="arrow-left" color="white"></IconButton>
-            <Text style={styles.title} onPress={()=>toggleMenu()}>{remote.name}</Text>
+            <IconButton icon="menu" color="white" onPress={()=>toggleMenu()}></IconButton>
+            <Text style={styles.title}>{remote.name}</Text>
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
           <Animatable.View style={{height:0,overflow:"hidden"}} ref={$menuView} duration={500}>
@@ -66,13 +69,14 @@ export default function App() {
               <Button mode="outlined" color="white" style={{margin:10,borderWidth:2}} onPress={()=>{$remote(item);toggleMenu()}} key={i}>{item.name}</Button>
             )}
           </Animatable.View>
+          <TouchableWithoutFeedback onPress={()=>{if(menuOpen)toggleMenu()}}>
             <Surface style={styles.surface}>
               <Animatable.Text style={{...styles.title,opacity:0,height:0}} ref={$surfaceTitle}>{remote.name}</Animatable.Text>
               <Animatable.View ref={$surfaceView} duration={500}>
                 <Remote remote={remote}/>
               </Animatable.View>
             </Surface>
-          
+          </TouchableWithoutFeedback>
         </View>
       </PaperProvider>
     );
