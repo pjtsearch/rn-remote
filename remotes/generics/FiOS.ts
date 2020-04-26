@@ -1,7 +1,7 @@
 import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout, Device } from "remote-lib";
 
-export const FiOS = ({fios}:{fios:Device})=>{
-    return new Remote({name:"Nook Fios",layout:[
+export const FiOS = ({name,fios}:{name:string,fios:Device})=>{
+    return new Remote({name,layout:[
         [
             new HLayout([
                 new Macro({name:"hgtv",icon:"home-variant-outline",actions:[

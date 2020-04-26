@@ -1,7 +1,7 @@
 import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout, Device } from "remote-lib";
 
-export const Roku = ({roku}:{roku:Device}) =>{
-    return new Remote({name:"Roku",layout:[
+export const Roku = ({name,roku}:{name:string,roku:Device}) =>{
+    return new Remote({name,layout:[
         [
             new HLayout([
                 new Macro({name:"home",icon:"home-variant-outline",actions:[
