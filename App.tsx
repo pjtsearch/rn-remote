@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Remote from "./components/Remote"
-import {fios,Roku} from "./remotes"
+import {fios,Roku,NookFios} from "./remotes"
 import { Provider as PaperProvider, DefaultTheme, IconButton, Surface } from 'react-native-paper';
 import { vscale, scale } from './utils/scale';
 import { useFonts } from '@use-expo/font';
