@@ -1,7 +1,8 @@
-import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout, Device } from "remote-lib";
+import { Remote, HLayout, Macro, VLayout, ArrowLayout, GridLayout, Device, Custom } from "remote-lib";
+import { TV, Matrix, AudioReceiver } from "../../devices/generics";
 
 export class FiOS extends Remote {
-    constructor({name,fios}:{name:string,fios:Device}){
+    constructor({name,fios,tv,matrix,matrixCommand,audioReceiver,audioReceiverAddress,audioReceiverOutput}:{name:string,fios:Device,tv:TV,matrix:Matrix,matrixCommand:string,audioReceiver:AudioReceiver,audioReceiverAddress:string,audioReceiverOutput:string}){
         super({name,layout:[
             [
                 new HLayout([
@@ -14,9 +15,17 @@ export class FiOS extends Remote {
                     new Macro({name:"off",icon:"power-off",actions:[
                         // fios.getAction("")
                     ]}),
-                    new Macro({name:"on",icon:"power-on",actions:[
-                        // fios.getAction("")
-                    ]})
+                    new Custom({name:"on",icon:"power-on",async action(){
+                        // console.log(tv.getAction("on"))
+                        tv.getAction("on").run()
+                        matrix.getAction(matrixCommand).run()
+                        audioReceiver.getAction(`${audioReceiverAddress}On`).run()
+                        await (async () => new Promise(resolve => setTimeout(resolve, 2000)))(); 
+                        audioReceiver.getAction(`${audioReceiverAddress}Set${audioReceiverOutput}`).run()
+                        await (async () => new Promise(resolve => setTimeout(resolve, 2000)))(); 
+                        audioReceiver.getAction(`${audioReceiverAddress}VolumeSet`).run()
+                        fios.getAction("on").run()
+                    }})
                 ])
             ],
             [
