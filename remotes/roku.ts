@@ -1,4 +1,4 @@
 import { Roku } from "./generics";
 import { nookRoku } from "../devices"
 
-export const NookRoku = Roku({name:"Nook Roku",roku:nookRoku})
+export const NookRoku = new Roku({name:"Nook Roku",roku:nookRoku})
