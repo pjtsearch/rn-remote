@@ -1,4 +1,2 @@
-export * from "./TV"
-export * from "./STB"
+export * from "./fios"
 export * from "./roku"
-export * from "./nookFios"

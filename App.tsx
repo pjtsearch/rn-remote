@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import Remote from "./components/Remote"
-import {fios,Roku,NookFios} from "./remotes"
+import {NookFios,NookRoku} from "./remotes"
 import { Provider as PaperProvider, DefaultTheme, IconButton, Surface } from 'react-native-paper';
 import { vscale, scale } from './utils/scale';
 import { useFonts } from '@use-expo/font';
@@ -21,7 +21,7 @@ const theme = {
 console.log("surfaceTitle")
 
 export default function App() {
-  const remote = Roku
+  const remote = NookFios
   let [fontsLoaded] = useFonts({
     'Google Sans Medium': require('./assets/fonts/GoogleSansMedium.ttf'),
     'Google Sans': require('./assets/fonts/GoogleSans.ttf'),
