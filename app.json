@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "remote",
+    "name": "Remote",
     "slug": "remote",
     "platforms": [
       "ios",
@@ -31,6 +31,10 @@
     },
     "androidNavigationBar": {
       "backgroundColor": "#000000"
+    },
+    "android":{
+      "package": "com.pjtsearch.remote",
+      "versionCode": 1
     }
   }
 }
