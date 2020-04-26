@@ -3,6 +3,10 @@ import { Device, HttpAction, TelnetAction } from "remote-lib"
 export class FiOS extends Device {
     constructor({ws,host,port,address,name}:{ws:WebSocket,host:string,port:number,address:string,name:string}){
         super({name,actions:[
+            new TelnetAction({name:"on",ws,host,port,
+            command:"sendir,"+address+",2,38000,1,37,340,170,20,84,20,84,20,170,20,170,20,84,20,170,20,84,20,84,20,84,20,84,20,84,20,84,20,84,20,170,20,84,20,84,20,1268,340,84,20,3365"
+            }),
+
             new TelnetAction({name:"guide",ws,host,port,
             command:"sendir,"+address+",5,38000,1,37,343,172,18,86,18,86,18,86,18,86,18,172,18,172,18,86,18,86,18,86,18,86,18,86,18,86,18,172,18,86,18,172,18,172,18,1182,343,86,18,3371"
             }),

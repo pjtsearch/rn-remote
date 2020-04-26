@@ -8,6 +8,7 @@ import { useFonts } from '@use-expo/font';
 import { AppLoading } from 'expo';
 import * as Animatable from 'react-native-animatable';
 import { house } from './House';
+import { nookTV, centralMatrix } from './devices';
 
 const theme = {
   ...DefaultTheme,
@@ -22,6 +23,8 @@ const theme = {
 
 export default function App() {
   useEffect(() =>{
+    console.log(nookTV.getAction("on").run())
+    console.log(centralMatrix.getAction("o1i1").run())
     setTimeout(()=>StatusBar.setBackgroundColor("#448aff"),800)
   },[])
   const [remote,$remote] = useState(NookFios)
