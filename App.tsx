@@ -18,6 +18,7 @@ const theme = {
     accent: '#448aff',
   },
 };
+console.log("surfaceTitle")
 
 export default function App() {
   const remote = Roku
@@ -25,18 +26,29 @@ export default function App() {
     'Google Sans Medium': require('./assets/fonts/GoogleSansMedium.ttf'),
     'Google Sans': require('./assets/fonts/GoogleSans.ttf'),
   });
-  var view:any;
+  var [menuView,$menuView]:any = useState({});
+  var [surfaceTitle,$surfaceTitle]:any = useState({});
+  var [surfaceView,$surfaceView]:any = useState({});
   const menuItems = [
     "test"
   ]
-  const handleViewRef = (ref:any) => view = ref;
+  // const handleMenuViewRef = (ref:any) => menuView = ref;
+  // const handleSurfaceViewRef = (ref:any) => surfaceView = ref;
+  // const handleSurfaceTitleRef = (ref:any) => {surfaceTitle = ref;console.log(!surfaceTitle);}
+
   let [menuOpen,$menuOpen] = useState(false)
   const toggleMenu = () => {
     if (!menuOpen){
-      view.animate({ 0: { height: "0%" }, 1: { height: "91.25%" } });
+      menuView.animate({ 0: { height: "0%" }, 1: { height: "81%"} });
+      surfaceView.animate({0: { opacity:1 }, 1: { opacity:0 } })
+      setTimeout(()=>{
+        surfaceTitle.animate({0: { opacity:0,height:0}, 1: { opacity:1,height:30} })
+      },100)
       $menuOpen(true)
     }else {
-      view.animate({ 0: { height: "91.25%" }, 1: { height: "0%"  } });
+      surfaceTitle.animate({0: { opacity:1,height:30}, 0.5: { opacity:0, height:0}, 1:{opacity:0, height:0} })
+      menuView.animate({ 0: { height: "81%" }, 1: { height: "0%"} });
+      surfaceView.animate({0: { opacity:0 }, 1: { opacity:1 } })
       $menuOpen(false)
     }
   }
@@ -51,14 +63,18 @@ export default function App() {
             <Text style={styles.title} onPress={()=>toggleMenu()}>{remote.name}</Text>
             <IconButton icon="dots-vertical" color="white"></IconButton>
           </View>
-          <Animatable.View style={{height:0,overflow:"hidden"}} ref={handleViewRef} duration={500}>
+          <Animatable.View style={{height:0,overflow:"hidden"}} ref={$menuView} duration={500}>
             {menuItems.map((v,i)=>
               <Text key={i}>test</Text>
             )}
           </Animatable.View>
-          <Surface style={styles.surface}>
-            <Remote remote={remote}/>
-          </Surface>
+            <Surface style={styles.surface}>
+              <Animatable.Text style={{...styles.title,opacity:0,height:0}} ref={$surfaceTitle}>{remote.name}</Animatable.Text>
+              <Animatable.View ref={$surfaceView} duration={500}>
+                <Remote remote={remote}/>
+              </Animatable.View>
+            </Surface>
+          
         </View>
       </PaperProvider>
     );
