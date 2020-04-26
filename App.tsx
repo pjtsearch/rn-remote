@@ -70,7 +70,7 @@ export default function App() {
           </View>
           <Animatable.View style={{height:0,overflow:"hidden"}} ref={$menuView} duration={500}>
             {menuItems.map((item,i)=>
-              <Button mode={item == remote ? "contained":"outlined"} color={item == remote ? "#ffffff77": "white"} style={{margin:10,borderWidth:2}} onPress={()=>{$remote(item);toggleMenu()}} key={i}>{item.name}</Button>
+              <Button mode={"outlined"} color="white" style={{margin:10,borderWidth:2,backgroundColor:item == remote?"#ffffff77":"transparent"}} onPress={()=>{$remote(item);toggleMenu()}} key={i}>{item.name}</Button>
             )}
           </Animatable.View>
           <TouchableWithoutFeedback onPress={()=>{if(menuOpen)toggleMenu()}}>
