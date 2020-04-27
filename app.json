@@ -7,6 +7,7 @@
       "android",
       "web"
     ],
+    "userInterfaceStyle": "dark",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +23,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "dark"
     },
     "androidStatusBarColor": "#000000",
     "androidStatusBar": {
@@ -34,7 +36,8 @@
     },
     "android":{
       "package": "com.pjtsearch.remote",
-      "versionCode": 1
+      "versionCode": 1,
+      "userInterfaceStyle": "dark"
     }
   }
 }
